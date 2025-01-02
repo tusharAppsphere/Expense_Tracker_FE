@@ -13,6 +13,7 @@ import { useForm, Controller } from 'react-hook-form';
 import axios from 'axios';
 import { authService } from '../services/authService';
 import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../utils';
 
 const CreateExpensePage = () => {
   const { control, handleSubmit, register, watch } = useForm();
@@ -27,7 +28,7 @@ const CreateExpensePage = () => {
     const fetchCategories = async () => {
       try {
         const token = authService.getToken();
-        const categoriesResponse = await axios.get('http://localhost:8000/api/categories/', {
+        const categoriesResponse = await axios.get(`${API_URL}/categories/`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setCategories(categoriesResponse.data);
@@ -44,7 +45,7 @@ const CreateExpensePage = () => {
       if (selectedCategory) {
         try {
           const token = authService.getToken();
-          const subcategoriesResponse = await axios.get(`http://localhost:8000/api/subcategories/?category=${selectedCategory}`, {
+          const subcategoriesResponse = await axios.get(`{API_URL}/subcategories/?category=${selectedCategory}`, {
             headers: { Authorization: `Bearer ${token}` }
           });
           setSubcategories(subcategoriesResponse.data);
@@ -88,7 +89,7 @@ const CreateExpensePage = () => {
 
 
       // Submit the form data via Axios
-      await axios.post('http://localhost:8000/api/expenses/', formData, {
+      await axios.post(`{APU_URL}/expenses/`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'multipart/form-data', // Required for file uploads
