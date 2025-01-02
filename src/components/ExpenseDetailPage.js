@@ -73,7 +73,7 @@ const ExpenseDetailPage = ({ expenseId, onBack }) => {
           <div className="transaction-image image-section">
             <h3>Transaction Image</h3>
             <img 
-             src={`http://localhost:8000/media/${expense.transaction_image}`}
+             src={`http://lab.appsphere.in:8000/media/${expense.transaction_image}`}
               alt="Transaction Receipt" 
               style={{ maxWidth: '100%', height: 'auto' }}
             />
@@ -83,7 +83,7 @@ const ExpenseDetailPage = ({ expenseId, onBack }) => {
           <div className="bill-image image-section">
             <h3>Bill Image</h3>
             <img 
-              src={`http://localhost:8000/media/${expense.bill_image}`}
+              src={`http://lab.appshere.in:8000/media/${expense.bill_image}`}
               alt="Bill Receipt" 
               style={{ maxWidth: '100%', height: 'auto' }}
             />
