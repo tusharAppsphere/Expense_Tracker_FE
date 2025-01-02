@@ -1,0 +1,44 @@
+/* src/components/Navbar.css */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    background-color: whitesmoke;
+    padding: 10px 20px;
+    color: black;
+    align-items: center;
+    border:1px solid black;
+    margin-top: 80px;
+  }
+  
+  .navbar-left h3 {
+    margin: 0;
+  }
+  
+  .navbar-right {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar-right span {
+    margin-right: 20px;
+  }
+  
+  .user-name {
+    font-weight: bold;
+  }
+  
+  .logout-btn {
+    padding: 6px 12px;
+    background-color: #1837ea;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+  
+  .logout-btn:hover {
+    background-color: #ff1a1a;
+  }
+  

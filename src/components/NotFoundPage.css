@@ -1,0 +1,35 @@
+.not-found-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    background-color: #f9f9f9;
+    color: #333;
+  }
+  
+  .not-found-page h1 {
+    font-size: 6rem;
+    margin-bottom: 1rem;
+  }
+  
+  .not-found-page p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .not-found-page button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .not-found-page button:hover {
+    background-color: #0056b3;
+  }
+  

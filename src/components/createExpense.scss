@@ -1,0 +1,113 @@
+/* General Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(to bottom right, #f0f4ff, #d9e4ff);
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  /* Form Container */
+  .kharch-form-container {
+    margin: 90px auto;
+    max-width: 600px;
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Title */
+  .kharch-form-title {
+    margin-top: 10px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* Form Elements */
+  .kharch-form-field {
+    margin-bottom: 20px;
+  }
+  
+  /* Input Fields */
+  .kharch-form-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #1f2937;
+    transition: border-color 0.3s ease;
+  }
+  
+  .kharch-form-input:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 4px rgba(99, 102, 241, 0.3);
+  }
+  
+  /* Select Fields */
+  .kharch-form-select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #1f2937;
+    transition: border-color 0.3s ease;
+  }
+  
+  .kharch-form-select:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 4px rgba(99, 102, 241, 0.3);
+  }
+  
+  /* Button */
+  .kharch-form-button {
+    background-color: #6366f1;
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    padding: 12px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    width: 100%;
+  }
+  
+  .kharch-form-button:hover {
+    background-color: #4f46e5;
+  }
+  
+  .kharch-form-button:focus {
+    outline: none;
+    box-shadow: 0 0 4px #6366f1;
+  }
+  
+  /* File Input */
+  .kharch-form-file {
+    margin-top: 16px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .kharch-form-container {
+      padding: 15px;
+    }
+  
+    .kharch-form-input,
+    .kharch-form-select {
+      font-size: 12px;
+      padding: 10px;
+    }
+  }
+  

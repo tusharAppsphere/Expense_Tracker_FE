@@ -1,0 +1,207 @@
+.expenses-page {
+    font-family: 'Roboto', sans-serif;
+    color: #2c3e50;
+    padding: 2rem;
+    /* background-color: #f9fafb; */
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .heading {
+    font-size: 1.8rem;
+    font-weight: 600;
+  }
+  
+  .new-tag {
+    background-color: #6366f1;
+    color: #fff;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-left: 0.5rem;
+  }
+  
+  .filter-button {
+    background-color: #6366f1;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .filter-button:hover {
+    background-color: #4f46e5;
+  }
+  
+  .filters-container {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+    margin-bottom: 2rem;
+  }
+  
+  .filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .filter-group {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .filter-dropdown {
+    background-color: #f9fafb;
+    border: 1px solid #d1d5db;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-size: 0.9rem;
+    width: 12rem;
+    transition: border-color 0.3s ease;
+  }
+  
+  .filter-dropdown:focus {
+    outline: none;
+    border-color: #6366f1;
+  }
+  
+  .filter-actions {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .expenses-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  }
+  
+  .expenses-table th,
+  .expenses-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #d1d5db;
+  }
+  
+  .expenses-table th {
+    background-color: #f9fafb;
+    font-weight: 600;
+  }
+  
+  .expenses-table tbody tr:nth-child(even) {
+    background-color: #f3f4f6;
+  }
+  
+  .expenses-table tbody tr:hover {
+    background-color: #e5e7eb;
+    transition: background-color 0.3s ease;
+  }
+  
+  .customer-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background-color: #6366f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+  
+  .details .name {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+  
+  .details .handle {
+    color: #6b7280;
+    font-size: 0.8rem;
+  }
+  
+  .payment-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .payment-method {
+    font-weight: 600;
+  }
+  
+  .expiration {
+    color: #6b7280;
+    font-size: 0.8rem;
+  }
+  
+  .category-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .category {
+    background-color: #e5e7eb;
+    color: #4b5563;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.8rem;
+  }
+  
+  .category.arts {
+    background-color: #a5b4fc;
+    color: #2563eb;
+  }
+  
+  .category.busines {
+    background-color: #fde68a;
+    color: #ca8a04;
+  }
+  
+  .category.travel {
+    background-color: #9ca3af;
+    color: #374151;
+  }
+  
+  .clickthrough-percentage {
+    font-weight: 600;
+  }
+  
+  .view-button {
+    background-color: #6366f1;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .view-button:hover {
+    background-color: #4f46e5;
+  }

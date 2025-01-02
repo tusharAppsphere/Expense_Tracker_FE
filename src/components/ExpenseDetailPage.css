@@ -1,0 +1,287 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(to bottom right, #f0f4ff, #d9e4ff);
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  /* Page Container */
+  .expenses-page {
+    margin: 40px auto;
+    max-width: 1200px;
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Page Title */
+  h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  /* Buttons */
+  button {
+    background-color: #6366f1;
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-right: 3px;
+  }
+  
+  button:hover {
+    background-color: #4f46e5;
+  }
+  
+  .download-button {
+    margin-bottom: 10px;
+  }
+  
+  .filter-button,
+  .sort-button {
+    margin-left: 8px;
+  }
+  
+  button:focus {
+    outline: none;
+    box-shadow: 0 0 4px #6366f1;
+  }
+  
+  /* Filters Container */
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+  }
+  
+  .filters input,
+  .filters select {
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #1f2937;
+    transition: border-color 0.3s ease;
+  }
+  
+  .filters input:focus,
+  .filters select:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 4px rgba(99, 102, 241, 0.3);
+  }
+  
+  .sort-dropdown {
+    margin-left: 10px;
+  }
+  
+  /* Table Styles */
+  .expenses-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+  }
+  
+  .expenses-table th {
+    text-align: left;
+    background-color: #f9fafb;
+    padding: 12px 16px;
+    color: #475569;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  
+  .expenses-table tr {
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  .expenses-table td {
+    padding: 12px 16px;
+    font-size: 14px;
+    color: #1f2937;
+    vertical-align: middle;
+  }
+  
+  .expenses-table tr td:first-child {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+  
+  .expenses-table tr td:last-child {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+  
+  .expenses-table .view-button {
+    background-color: #10b981;
+    padding: 6px 12px;
+    font-size: 13px;
+    border-radius: 6px;
+  }
+  
+  .expenses-table .view-button:hover {
+    background-color: #059669;
+  }
+  
+  /* Table Hover Effect */
+  .expenses-table tr:hover {
+    background-color: #f3f4f6;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .filters {
+      flex-direction: column;
+      gap: 8px;
+    }
+  
+    .expenses-page {
+      padding: 15px;
+    }
+  
+    .expenses-table td,
+    .expenses-table th {
+      font-size: 12px;
+      padding: 8px 10px;
+    }
+  }
+
+  /* General Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(to bottom right, #f0f4ff, #d9e4ff);
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Kharch Detail Page Container */
+.kharch-detail-container {
+  margin: 40px auto;
+  width: 100vh;
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Title and Back Button */
+.kharch-detail-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.back-button {
+  background-color: #6366f1;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.back-button:hover {
+  background-color: #4f46e5;
+}
+
+.back-button:focus {
+  outline: none;
+  box-shadow: 0 0 4px #6366f1;
+}
+hr{
+  margin: 10px 0px;
+}
+/* Kharch Info Section */
+.kharch-info {
+  margin-bottom: 30px;
+  display: ruby;
+}
+
+.kharch-info p {
+  min-width: 40vh;
+  font-size: 16px;
+  color: #1f2937;
+  margin-bottom: 12px;
+}
+
+.kharch-info strong {
+  font-weight: 600;
+  color: #475569;
+}
+
+/* Transaction and Bill Image Section */
+.images-container{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.image-section {
+  margin: 20px;
+}
+
+.image-section h3 {
+  font-size: 20px;
+  color: #1e293b;
+  margin-bottom: 10px;
+}
+
+.image-section img {
+  width: 30rem;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.image-section img:hover {
+  transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .kharch-detail-container {
+    padding: 15px;
+  }
+
+  .kharch-info p {
+    font-size: 14px;
+  }
+
+  .image-section img {
+    max-width: 100%;
+  }
+}
+
+  
