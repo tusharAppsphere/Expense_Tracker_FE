@@ -67,7 +67,6 @@ const AddFundsPage = () => {
 
   return (
     <Container maxWidth="md" sx={{ py: 4 }}>
-      <h2>{API_URL}/user/details/getall/</h2>
       <Card 
         sx={{ 
           borderRadius: 2,
