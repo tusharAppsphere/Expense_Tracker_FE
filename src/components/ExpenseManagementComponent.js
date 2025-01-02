@@ -4,6 +4,7 @@ import ExpenseDetailPage from './ExpenseDetailPage.js';
 import { useNavigate } from 'react-router-dom';
 import { Doughnut } from 'react-chartjs-2'; // Import Doughnut chart from react-chartjs-2
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'; // Import necessary Chart.js components
+import { API_URL } from '../utils'; // Import API_URL from utils
 
 // Register the Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -28,7 +29,11 @@ const ExpensesPage = () => {
     const fetchExpenses = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('http://localhost:8000/api/expenses/', {
+        if (!token) {
+          throw new Error('No token found');
+        }
+
+        const response = await fetch(`${API_URL}/expenses/`, {
           headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
@@ -287,5 +292,4 @@ const ExpensesPage = () => {
     </div>
   );
 };
-
 export default ExpensesPage;

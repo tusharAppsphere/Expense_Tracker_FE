@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import './ExpenseDetailPage.css';
+import { API_URL } from '../utils';
 
 const ExpenseDetailPage = ({ expenseId, onBack }) => {
   const [expense, setExpense] = useState(null);
@@ -12,7 +13,7 @@ const ExpenseDetailPage = ({ expenseId, onBack }) => {
     const fetchExpenseDetails = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch(`http://localhost:8000/api/expenses/${expenseId}/`, {
+        const response = await fetch(`${API_URL}/expenses/${expenseId}/`, {
           method: 'GET',
           headers: { 
             'Authorization': `Bearer ${token}`,

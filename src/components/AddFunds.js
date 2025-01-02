@@ -14,6 +14,7 @@ import {
 } from '@mui/material';
 import { authService } from '../services/authService';
 import axios from 'axios';
+import { API_URL } from '../utils';
 
 const AddFundsPage = () => {
   const [users, setUsers] = useState([]);
@@ -26,7 +27,7 @@ const AddFundsPage = () => {
     const fetchUsers = async () => {
       try {
         const token = authService.getToken();
-        const response = await axios.get('http://localhost:8000/api/user/details/getall/', {
+        const response = await axios.get(`${API_URL}/user/details/getall/`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUsers(response.data);
@@ -47,7 +48,7 @@ const AddFundsPage = () => {
     try {
       const token = authService.getToken();
       await axios.post(
-        'http://localhost:8000/api/add-funds/',
+        `${API_URL}/add-funds/`,
         { email: selectedUser, funds: parseFloat(amount) },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -66,6 +67,7 @@ const AddFundsPage = () => {
 
   return (
     <Container maxWidth="md" sx={{ py: 4 }}>
+      <h2>{API_URL}/user/details/getall/</h2>
       <Card 
         sx={{ 
           borderRadius: 2,

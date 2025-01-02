@@ -13,23 +13,18 @@ import { useForm, Controller } from 'react-hook-form';
 import axios from 'axios';
 import { authService } from '../services/authService';
 import { useNavigate } from 'react-router-dom';
-import './createExpense.scss';
 
 const CreateExpensePage = () => {
   const { control, handleSubmit, register, watch } = useForm();
   const [categories, setCategories] = useState([]);
   const [subcategories, setSubcategories] = useState([]);
-  const [previewImages, setPreviewImages] = useState({
-    transaction_image: null,
-    bill_image: null
-  });
   const navigate = useNavigate();
   
-  const selectedCategory = watch('category');
+  const selectedCategory = watch('category_id');
 
   // Fetch categories
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchCategories = async () => {
       try {
         const token = authService.getToken();
         const categoriesResponse = await axios.get('http://localhost:8000/api/categories/', {
@@ -40,7 +35,7 @@ const CreateExpensePage = () => {
         console.error('Error fetching categories', error);
       }
     };
-    fetchData();
+    fetchCategories();
   }, []);
 
   // Fetch subcategories based on the selected category
@@ -70,12 +65,13 @@ const CreateExpensePage = () => {
       // Append form fields to FormData
       Object.keys(data).forEach((key) => {
         const value = data[key];
-        if (value !== undefined && key !== 'transaction_image' && key !== 'bill_image' && key !=='subcategory') {
+        if (value !== undefined && key !== 'transaction_image' && key !== 'bill_image' && key !== 'subcategory_id') {
           formData.append(key, value); // Use append for non-file fields
         }
       });
 
-      formData.append('subcategory_id', 1);
+      // Append subcategory_id
+      formData.append('subcategory_id',1)
 
       // Append the image files separately
       if (data.transaction_image && data.transaction_image[0]) {
@@ -85,6 +81,11 @@ const CreateExpensePage = () => {
       if (data.bill_image && data.bill_image[0]) {
         formData.append('bill_image', data.bill_image[0]);
       }
+      console.log('FormData being sent:');
+      formData.forEach((value, key) => {
+        console.log(key, ':', value);
+      });
+
 
       // Submit the form data via Axios
       await axios.post('http://localhost:8000/api/expenses/', formData, {
@@ -93,25 +94,13 @@ const CreateExpensePage = () => {
           'Content-Type': 'multipart/form-data', // Required for file uploads
         },
       });
-      navigate("/allExpense");
+
+      // Redirect to the expenses page
+      navigate('/allExpense');
+      
     } catch (error) {
       console.error('Error creating expense', error);
       alert('Failed to create expense');
-    }
-  };
-
-  // Handle image file preview
-  const handleImageChange = (e, imageType) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPreviewImages((prevState) => ({
-          ...prevState,
-          [imageType]: reader.result
-        }));
-      };
-      reader.readAsDataURL(file);
     }
   };
 
@@ -188,6 +177,28 @@ const CreateExpensePage = () => {
           )}
         />
 
+        {/* Subcategory */}
+        {/* {selectedCategory && (
+          <Controller
+            name="subcategory_id"
+            control={control}
+            defaultValue=""
+            rules={{ required: true }}
+            render={({ field }) => (
+              <FormControl fullWidth margin="normal" className="kharch-form-select">
+                <InputLabel>Subcategory</InputLabel>
+                <Select {...field}>
+                  {subcategories.map(subcategory => (
+                    <MenuItem key={subcategory.id} value={subcategory.id}>
+                      {subcategory.subcategory_name}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            )}
+          />
+        )} */}
+
         {/* Transaction Image */}
         <TextField
           fullWidth
@@ -196,13 +207,9 @@ const CreateExpensePage = () => {
           InputLabelProps={{ shrink: true }}
           inputProps={{ accept: 'image/*' }}
           {...register('transaction_image')} // Register the file input
-          onChange={(e) => handleImageChange(e, 'transaction_image')}
           margin="normal"
           className="kharch-form-file"
         />
-        {previewImages.transaction_image && (
-          <img src={previewImages.transaction_image} alt="Transaction Preview" width="100" />
-        )}
 
         {/* Billing Image */}
         <TextField
@@ -212,13 +219,9 @@ const CreateExpensePage = () => {
           InputLabelProps={{ shrink: true }}
           inputProps={{ accept: 'image/*' }}
           {...register('bill_image')} // Register the file input
-          onChange={(e) => handleImageChange(e, 'bill_image')}
           margin="normal"
           className="kharch-form-file"
         />
-        {previewImages.bill_image && (
-          <img src={previewImages.bill_image} alt="Bill Preview" width="100" />
-        )}
 
         {/* Submit Button */}
         <Button 
