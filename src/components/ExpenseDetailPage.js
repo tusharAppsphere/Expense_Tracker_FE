@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import './ExpenseDetailPage.css';
 import { API_URL } from '../utils';
+import {IMAGE_BASE_URL} from '../utils'
 
 const ExpenseDetailPage = ({ expenseId, onBack }) => {
   const [expense, setExpense] = useState(null);
@@ -73,7 +74,7 @@ const ExpenseDetailPage = ({ expenseId, onBack }) => {
           <div className="transaction-image image-section">
             <h3>Transaction Image</h3>
             <img 
-             src={`http://lab.appsphere.in:8000/media/${expense.transaction_image}`}
+             src={`${IMAGE_BASE_URL}${expense.transaction_image}`}
               alt="Transaction Receipt" 
               style={{ maxWidth: '100%', height: 'auto' }}
             />
@@ -83,7 +84,7 @@ const ExpenseDetailPage = ({ expenseId, onBack }) => {
           <div className="bill-image image-section">
             <h3>Bill Image</h3>
             <img 
-              src={`http://lab.appshere.in:8000/media/${expense.bill_image}`}
+              src={`${IMAGE_BASE_URL}${expense.bill_image}`}
               alt="Bill Receipt" 
               style={{ maxWidth: '100%', height: 'auto' }}
             />
