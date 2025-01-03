@@ -6,7 +6,8 @@ import { API_URL } from '../utils';
 export const authService = {
   login: async (email, password) => {
     try {
-      const response = await axios.post(`${API_URL}/login/`, { email, password });
+      console.log(email," ",password)
+      const response = await axios.post('http://127.0.0.1:8000/api/login/', { email, password });
       if (response.data.access) {
         localStorage.setItem('token', response.data.access);
         localStorage.setItem('user_type', JSON.stringify(response.data.user.user_type));

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  TextField, 
-  Button, 
-  Container, 
-  Typography, 
-  Select, 
-  MenuItem, 
-  FormControl, 
-  InputLabel 
+import {
+  TextField,
+  Button,
+  Container,
+  Typography,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel
 } from '@mui/material';
 import { useForm, Controller } from 'react-hook-form';
 import axios from 'axios';
@@ -20,7 +20,7 @@ const CreateExpensePage = () => {
   const [categories, setCategories] = useState([]);
   const [subcategories, setSubcategories] = useState([]);
   const navigate = useNavigate();
-  
+
   const selectedCategory = watch('category_id');
 
   // Fetch categories
@@ -40,22 +40,22 @@ const CreateExpensePage = () => {
   }, []);
 
   // Fetch subcategories based on the selected category
-  useEffect(() => {
-    const fetchSubcategories = async () => {
-      if (selectedCategory) {
-        try {
-          const token = authService.getToken();
-          const subcategoriesResponse = await axios.get(`{API_URL}/subcategories/?category=${selectedCategory}`, {
-            headers: { Authorization: `Bearer ${token}` }
-          });
-          setSubcategories(subcategoriesResponse.data);
-        } catch (error) {
-          console.error('Error fetching subcategories', error);
-        }
-      }
-    };
-    fetchSubcategories();
-  }, [selectedCategory]);
+  // useEffect(() => {
+  //   const fetchSubcategories = async () => {
+  //     if (selectedCategory) {
+  //       try {
+  //         const token = authService.getToken();
+  //         const subcategoriesResponse = await axios.get(`${API_URL}/subcategories/?category=${selectedCategory}`, {
+  //           headers: { Authorization: `Bearer ${token}` }
+  //         });
+  //         setSubcategories(subcategoriesResponse.data);
+  //       } catch (error) {
+  //         console.error('Error fetching subcategories', error);
+  //       }
+  //     }
+  //   };
+  //   fetchSubcategories();
+  // }, [selectedCategory]);
 
   // Handle form submission
   const onSubmit = async (data) => {
@@ -66,15 +66,15 @@ const CreateExpensePage = () => {
       // Append form fields to FormData
       Object.keys(data).forEach((key) => {
         const value = data[key];
-        if (value !== undefined && key !== 'transaction_image' && key !== 'bill_image' && key !== 'subcategory_id') {
-          formData.append(key, value); // Use append for non-file fields
+        if (value !== undefined && key !== 'transaction_image' && key !== 'bill_image') {
+          formData.append(key, value);
         }
       });
 
-      // Append subcategory_id
-      formData.append('subcategory_id',1)
+      // Hardcoded subcategory_id
+      formData.append('subcategory_id', 1);
 
-      // Append the image files separately
+      // Append image files
       if (data.transaction_image && data.transaction_image[0]) {
         formData.append('transaction_image', data.transaction_image[0]);
       }
@@ -82,23 +82,21 @@ const CreateExpensePage = () => {
       if (data.bill_image && data.bill_image[0]) {
         formData.append('bill_image', data.bill_image[0]);
       }
+
       console.log('FormData being sent:');
       formData.forEach((value, key) => {
-        console.log(key, ':', value);
+        console.log(key, value);
       });
 
-
       // Submit the form data via Axios
-      await axios.post(`{APU_URL}/expenses/`, formData, {
+      await axios.post(`${API_URL}/expenses/`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
-          'Content-Type': 'multipart/form-data', // Required for file uploads
+          'Content-Type': 'multipart/form-data',
         },
       });
 
-      // Redirect to the expenses page
       navigate('/allExpense');
-      
     } catch (error) {
       console.error('Error creating expense', error);
       alert('Failed to create expense');
@@ -106,8 +104,8 @@ const CreateExpensePage = () => {
   };
 
   return (
-    <Container maxWidth="sm" className="kharch-form-container">
-      <Typography variant="h4" align="center" gutterBottom className="kharch-form-title">
+    <Container maxWidth="sm">
+      <Typography variant="h4" align="center" gutterBottom>
         Create New Expense
       </Typography>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -117,9 +115,8 @@ const CreateExpensePage = () => {
           label="Description"
           {...register('description', { required: true })}
           margin="normal"
-          className="kharch-form-input"
         />
-        
+
         {/* Price */}
         <TextField
           fullWidth
@@ -127,9 +124,8 @@ const CreateExpensePage = () => {
           label="Price"
           {...register('price', { required: true, valueAsNumber: true })}
           margin="normal"
-          className="kharch-form-input"
         />
-        
+
         {/* Quantity */}
         <TextField
           fullWidth
@@ -137,7 +133,6 @@ const CreateExpensePage = () => {
           label="Quantity"
           {...register('quantity', { required: true, valueAsNumber: true })}
           margin="normal"
-          className="kharch-form-input"
         />
 
         {/* Payment Mode */}
@@ -147,7 +142,7 @@ const CreateExpensePage = () => {
           defaultValue=""
           rules={{ required: true }}
           render={({ field }) => (
-            <FormControl fullWidth margin="normal" className="kharch-form-select">
+            <FormControl fullWidth margin="normal">
               <InputLabel>Payment Mode</InputLabel>
               <Select {...field}>
                 <MenuItem value="cash">Cash</MenuItem>
@@ -165,7 +160,7 @@ const CreateExpensePage = () => {
           defaultValue=""
           rules={{ required: true }}
           render={({ field }) => (
-            <FormControl fullWidth margin="normal" className="kharch-form-select">
+            <FormControl fullWidth margin="normal">
               <InputLabel>Category</InputLabel>
               <Select {...field}>
                 {categories.map(category => (
@@ -178,27 +173,15 @@ const CreateExpensePage = () => {
           )}
         />
 
-        {/* Subcategory */}
-        {/* {selectedCategory && (
-          <Controller
-            name="subcategory_id"
-            control={control}
-            defaultValue=""
-            rules={{ required: true }}
-            render={({ field }) => (
-              <FormControl fullWidth margin="normal" className="kharch-form-select">
-                <InputLabel>Subcategory</InputLabel>
-                <Select {...field}>
-                  {subcategories.map(subcategory => (
-                    <MenuItem key={subcategory.id} value={subcategory.id}>
-                      {subcategory.subcategory_name}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            )}
-          />
-        )} */}
+        {/* Expense Date */}
+        <TextField
+          fullWidth
+          type="datetime-local"
+          label="Expense Date"
+          InputLabelProps={{ shrink: true }}
+          {...register('expense_date')}
+          margin="normal"
+        />
 
         {/* Transaction Image */}
         <TextField
@@ -207,9 +190,8 @@ const CreateExpensePage = () => {
           label="Transaction Image"
           InputLabelProps={{ shrink: true }}
           inputProps={{ accept: 'image/*' }}
-          {...register('transaction_image')} // Register the file input
+          {...register('transaction_image')}
           margin="normal"
-          className="kharch-form-file"
         />
 
         {/* Billing Image */}
@@ -219,19 +201,17 @@ const CreateExpensePage = () => {
           label="Billing Image"
           InputLabelProps={{ shrink: true }}
           inputProps={{ accept: 'image/*' }}
-          {...register('bill_image')} // Register the file input
+          {...register('bill_image')}
           margin="normal"
-          className="kharch-form-file"
         />
 
         {/* Submit Button */}
-        <Button 
-          type="submit" 
-          variant="contained" 
-          color="primary" 
-          fullWidth 
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          fullWidth
           sx={{ mt: 2 }}
-          className="kharch-form-button"
         >
           Create Expense
         </Button>
